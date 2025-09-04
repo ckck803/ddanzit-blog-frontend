@@ -1,6 +1,6 @@
 <template>
   <li
-    class="relative before:absolute before:top-[60px] before:left-[45px] before:translate-x-[-25px] before:w-[2px] before:h-[calc(100%-80px)] before:bg-[#c5c5c5] flex items-start space-x-4 rounded-lg"
+    class="relative before:absolute before:top-[60px] before:left-[45px] before:translate-x-[-25px] before:w-[2px] before:h-[calc(100%-80px)] before:bg-gray-300 dark:before:bg-gray-600 flex items-start space-x-4 rounded-lg"
   >
     <div class="flex items-start space-x-4 w-full">
       <div class="pt-2">
@@ -9,8 +9,8 @@
       <div class="flex-1">
         <div class="">
           <div>
-            <p class="text-gray-800 font-bold">{{ props.comment.author }}</p>
-            <p class="text-gray-700 py-1">{{ props.comment.content }}</p>
+            <p class="text-gray-800 dark:text-white font-bold">{{ props.comment.author }}</p>
+            <p class="text-gray-700 dark:text-gray-300 py-1">{{ props.comment.content }}</p>
           </div>
           <div class="flex space-x-3 py-1 pl-2">
             <button
