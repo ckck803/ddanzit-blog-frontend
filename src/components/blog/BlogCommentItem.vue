@@ -15,7 +15,7 @@
           <div class="flex space-x-3 py-1 pl-2">
             <button
               @click="$emit('reply')"
-              class="text-sm text-blue-500 hover:underline"
+              class="text-sm text-blue-500 dark:text-blue-400 hover:underline"
             >
               <div class="w-4">
                 <img :src="iconReply" alt="Reply" />

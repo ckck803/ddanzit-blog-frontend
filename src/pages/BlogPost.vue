@@ -3,14 +3,14 @@
     <div v-if="post" class="max-w-4xl mx-auto">
       <!-- 헤더 섹션 -->
       <div class="mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ post.title }}</h1>
-        <div class="flex items-center gap-4 text-gray-600">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ post.title }}</h1>
+        <div class="flex items-center gap-4 text-gray-600 dark:text-gray-400">
           <time class="text-sm">{{ post.date }}</time>
           <div class="flex gap-2">
             <span
               v-for="tag in post.tags"
               :key="tag"
-              class="px-3 py-1 text-sm bg-gray-100 text-gray-600 rounded-full"
+              class="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full"
             >
               #{{ tag }}
             </span>
@@ -26,12 +26,12 @@
       />
 
       <!-- 본문 내용 -->
-      <div class="prose prose-lg max-w-none">
+      <div class="prose prose-lg max-w-none text-gray-900 dark:text-gray-100">
         {{ post.content }}
       </div>
 
       <div class="mt-12">
-        <h2 class="text-2xl font-bold mb-4">댓글</h2>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">댓글</h2>
         <!-- 댓글 섹션 -->
         <div class="pb-10">
           <AddComment :commentId="comments.length" @addComment="addComment" />
@@ -41,7 +41,7 @@
         <div class="mt-12 flex justify-between">
           <button
             @click="router.push('/blog')"
-            class="px-6 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"
+            class="px-6 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-900 dark:text-white rounded-lg transition-colors"
           >
             목록으로 돌아가기
           </button>
@@ -51,7 +51,7 @@
 
     <!-- 로딩 상태 -->
     <div v-else class="flex justify-center items-center min-h-[50vh]">
-      <div class="text-gray-600">로딩 중...</div>
+      <div class="text-gray-600 dark:text-gray-400">로딩 중...</div>
     </div>
   </div>
 </template>
