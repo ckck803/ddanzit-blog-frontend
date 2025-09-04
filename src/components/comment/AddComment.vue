@@ -27,7 +27,6 @@
 </template>
 <script lang="ts" setup>
 import { defineProps, ref } from "vue";
-import type { IComment } from "../../types/IComment.ts";
 
 const emit = defineEmits(["addComment"]);
 
@@ -41,7 +40,7 @@ const addReply = () => {
     return;
   }
   
-  emit<IComment>("addComment", {
+  emit("addComment", {
     id: props.commentId,
     author: newReply.value.author,
     content: newReply.value.content,
