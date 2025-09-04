@@ -1,24 +1,28 @@
 <template>
-  <div class="p-4 bg-white dark:bg-gray-800 rounded border border-gray-200 dark:border-gray-600">
-    <input
-      v-model="newReply.author"
-      type="text"
-      placeholder="이름"
-      class="w-full p-2 mb-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-      @keyup.enter="addReply"
-    />
+  <div class="space-y-3">
     <textarea
       v-model="newReply.content"
-      placeholder="답글 내용"
-      class="w-full p-2 mb-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-      @keyup.enter="addReply"
+      placeholder="댓글을 작성하세요"
+      rows="3"
+      class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 resize-none text-sm"
     ></textarea>
-    <button
-      @click="addReply"
-      class="px-4 py-2 bg-blue-500 dark:bg-blue-600 text-white rounded hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors"
-    >
-      답글 추가
-    </button>
+    
+    <div class="flex items-center justify-between">
+      <input
+        v-model="newReply.author"
+        type="text"
+        placeholder="이름"
+        class="flex-1 mr-3 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 text-sm"
+      />
+      
+      <button
+        @click="addReply"
+        :disabled="!newReply.author.trim() || !newReply.content.trim()"
+        class="px-4 py-2 bg-green-500 hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed dark:bg-green-600 dark:hover:bg-green-700 dark:disabled:bg-gray-600 text-white text-sm font-medium rounded-md transition-colors"
+      >
+        댓글 작성
+      </button>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -33,6 +37,10 @@ const props = defineProps({
 });
 
 const addReply = () => {
+  if (!newReply.value.author.trim() || !newReply.value.content.trim()) {
+    return;
+  }
+  
   emit<IComment>("addComment", {
     id: props.commentId,
     author: newReply.value.author,
@@ -40,5 +48,8 @@ const addReply = () => {
     replies: [],
     showReply: false,
   });
+  
+  // 입력 필드 초기화
+  newReply.value = { author: "", content: "" };
 };
 </script>
