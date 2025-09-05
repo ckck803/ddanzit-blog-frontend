@@ -3,13 +3,22 @@
     <div
       class="px-30 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-14"
     >
-      <BlogCard v-for="post in posts" :key="post.id" :post="post" />
+      <!-- 로딩 중일 때 스켈레톤 UI 표시 -->
+      <template v-if="loading">
+        <SkeletonCard v-for="n in 6" :key="n" />
+      </template>
+
+      <!-- 로딩 완료 후 실제 블로그 카드 표시 -->
+      <template v-else>
+        <BlogCard v-for="post in posts" :key="post.id" :post="post" />
+      </template>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import BlogCard from "../components/blog/BlogCard.vue";
+import SkeletonCard from "../components/skeleton/SkeletonCard.vue";
 
 interface Post {
   id: number;
@@ -19,6 +28,8 @@ interface Post {
   excerpt: string;
   tags: string[];
 }
+
+const loading = ref(true);
 
 const posts = ref<Post[]>([
   {
@@ -92,6 +103,12 @@ const posts = ref<Post[]>([
     tags: ["Vue", "프로그래밍", "웹개발"],
   },
 ]);
+
+onMounted(async () => {
+  // 실제 API 호출을 시뮬레이션하기 위한 딜레이
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  loading.value = false;
+});
 </script>
 
 <style scoped>

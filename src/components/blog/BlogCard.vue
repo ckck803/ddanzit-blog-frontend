@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-sm bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer"
+    class="w-full max-w-sm bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer"
     @click="navigateToPost"
   >
     <img
@@ -9,9 +9,15 @@
       class="w-full h-48 object-cover"
     />
     <div class="p-6">
-      <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">{{ post.title }}</h2>
-      <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">{{ post.date }}</p>
-      <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{{ post.excerpt }}</p>
+      <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+        {{ post.title }}
+      </h2>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+        {{ post.date }}
+      </p>
+      <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+        {{ post.excerpt }}
+      </p>
       <div class="flex flex-wrap gap-2">
         <span
           v-for="tag in post.tags"
