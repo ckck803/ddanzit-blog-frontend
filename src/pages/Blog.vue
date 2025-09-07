@@ -1,24 +1,33 @@
 <template>
-  <div class="w-full flex mx-auto py-8 items-center justify-center">
+  <div class="w-full flex flex-col mx-auto py-8 items-center justify-center">
     <div
-      class="px-30 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-14"
+      class="px-12 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-14 max-w-7xl w-full justify-items-center"
     >
       <!-- 로딩 중일 때 스켈레톤 UI 표시 -->
-      <template v-if="loading">
+      <template v-if="appStore.isLoading">
         <SkeletonCard v-for="n in 6" :key="n" />
       </template>
-
       <!-- 로딩 완료 후 실제 블로그 카드 표시 -->
       <template v-else>
-        <BlogCard v-for="post in posts" :key="post.id" :post="post" />
+        <BlogCard v-for="post in paginatedPosts" :key="post.id" :post="post" />
       </template>
     </div>
+
+    <!-- Pagination -->
+    <Pagination
+      v-if="!appStore.isLoading"
+      :current-page="currentPage"
+      :total-pages="totalPages"
+      @update:current-page="currentPage = $event"
+    />
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import BlogCard from "../components/blog/BlogCard.vue";
 import SkeletonCard from "../components/skeleton/SkeletonCard.vue";
+import Pagination from "../components/Pagination.vue";
+import { useAppStore } from "../stores/settingStore";
 
 interface Post {
   id: number;
@@ -29,7 +38,9 @@ interface Post {
   tags: string[];
 }
 
-const loading = ref(true);
+const appStore = useAppStore();
+const currentPage = ref(1);
+const postsPerPage = 6;
 
 const posts = ref<Post[]>([
   {
@@ -104,10 +115,18 @@ const posts = ref<Post[]>([
   },
 ]);
 
+const totalPages = computed(() => Math.ceil(posts.value.length / postsPerPage));
+
+const paginatedPosts = computed(() => {
+  const start = (currentPage.value - 1) * postsPerPage;
+  const end = start + postsPerPage;
+  return posts.value.slice(start, end);
+});
+
 onMounted(async () => {
+  appStore.startLoading();
   // 실제 API 호출을 시뮬레이션하기 위한 딜레이
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  loading.value = false;
+  appStore.stopLoading();
 });
 </script>
 
