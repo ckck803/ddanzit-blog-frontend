@@ -6,7 +6,7 @@
     <div class="w-full h-48 bg-gray-200 dark:bg-gray-700"></div>
 
     <!-- 콘텐츠 스켈레톤 -->
-    <div class="p-6">
+    <div class="p-6 w-full">
       <!-- 제목 스켈레톤 (text-xl font-semibold 높이에 맞춤) -->
       <div class="h-7 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
 

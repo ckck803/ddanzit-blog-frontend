@@ -11,6 +11,7 @@
         <div class="hidden md:flex items-center">
           <div class="flex space-x-6 items-center">
             <router-link to="/" class="hover:text-gray-200 transition">Home</router-link>
+            <router-link to="/editor" class="hover:text-gray-200 transition">Editor</router-link>
             <a href="#" class="hover:text-gray-200 transition">About</a>
             <a href="#" class="hover:text-gray-200 transition">Contact</a>
           </div>
@@ -80,6 +81,12 @@
           class="block py-2 text-white hover:bg-slate-500 dark:hover:bg-slate-600 rounded-md px-3"
           @click="closeMenu"
           >Home</router-link
+        >
+        <router-link
+          to="/editor"
+          class="block py-2 text-white hover:bg-slate-500 dark:hover:bg-slate-600 rounded-md px-3"
+          @click="closeMenu"
+          >Editor</router-link
         >
         <a
           href="#"

@@ -3,15 +3,20 @@
     class="flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors"
   >
     <div class="flex-grow">
-      <NavigationBar />
+      <NavigationBar v-if="!isEditorPage" />
       <router-view></router-view>
     </div>
-    <BlogFooter />
+    <BlogFooter v-if="!isEditorPage" />
   </div>
 </template>
 <script setup lang="ts">
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import NavigationBar from "./components/NavigationBar.vue";
 import BlogFooter from "./components/blog/BlogFooter.vue";
+
+const route = useRoute();
+const isEditorPage = computed(() => route.name === 'Editor');
 </script>
 
 <style scoped>
