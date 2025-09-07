@@ -5,9 +5,9 @@
       <div class="flex w-full h-[calc(100vh-6.2rem)]">
         <div class="flex w-full flex-col overflow-y-auto md:mr-2">
           <div class="">
-            <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            <!-- <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               블로그 에디터
-            </h1>
+            </h1> -->
             <div class="flex gap-4">
               <input
                 v-model="title"
@@ -29,7 +29,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="relative">
                 <label
-                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  class="block text-sm font-medium text-gray-700 dark:text-gray-300 p-2"
                 >
                   카테고리
                 </label>
@@ -65,13 +65,14 @@
               </div>
               <div class="relative">
                 <!-- 라벨과 선택된 태그들을 한 줄에 표시 -->
-                <div class="flex items-center flex-wrap gap-2 mb-2">
-                  <label
-                    class="text-sm font-medium text-gray-700 dark:text-gray-300"
-                  >
-                    태그
-                  </label>
-
+                <div class="flex items-center flex-wrap gap-2 p-2">
+                  <div class="flex items-center">
+                    <label
+                      class="text-sm font-medium text-gray-700 dark:text-gray-300"
+                    >
+                      태그
+                    </label>
+                  </div>
                   <!-- 선택된 태그들 표시 -->
                   <div
                     v-if="selectedTags.length > 0"
