@@ -32,8 +32,8 @@
 </template>
 
 <script setup lang="ts">
+import type { Post } from "@/types/post";
 import { useRouter } from "vue-router";
-import type { Post } from "../../types/post";
 
 const router = useRouter();
 

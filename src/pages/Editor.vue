@@ -1,9 +1,9 @@
 <template>
-  <div class="min-h-screen flex bg-gray-50 dark:bg-gray-900">
+  <div class="h-screen flex bg-gray-50 dark:bg-gray-900">
     <div class="flex flex-col w-full px-4 py-6">
       <!-- Editor 영역 -->
       <div class="flex w-full h-[calc(100vh-6.2rem)]">
-        <div class="flex w-full flex-col overflow-y-auto md:mr-2">
+        <div class="flex w-full flex-col overflow-y-auto md:mr-2 max-h-full">
           <div class="">
             <!-- <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               블로그 에디터
@@ -15,12 +15,6 @@
                 placeholder="제목을 입력하세요"
                 class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
-              <!-- <button
-                @click="savePost"
-                class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                저장
-              </button> -->
             </div>
           </div>
 
@@ -141,6 +135,7 @@
             </h2>
             <textarea
               v-model="content"
+              v-on:paste="onPaste"
               placeholder="마크다운 내용을 입력하세요..."
               class="w-full flex-1 p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
@@ -149,13 +144,13 @@
       </div>
     </div>
     <!-- Preview -->
-    <div class="flex flex-col w-full md:ml-2">
+    <div class="flex flex-col w-full md:ml-2 overflow-scroll">
       <div class="bg-white dark:bg-gray-800 p-6 flex flex-col h-full">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
           미리보기
         </h2>
         <div
-          class="flex-1 p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 overflow-y-auto prose prose-sm max-w-none dark:prose-invert"
+          class="overflow-scroll flex-1 p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 prose prose-sm max-w-none dark:prose-invert"
           v-html="renderedContent"
         ></div>
       </div>
@@ -379,6 +374,42 @@ const savePost = () => {
 
   alert("포스트가 저장되었습니다!");
   router.push("/");
+};
+
+// 붙여넣기 기능
+const onPaste = (event: ClipboardEvent) => {
+  const clipboardItems = event.clipboardData?.items;
+  if (!clipboardItems) {
+    return;
+  }
+
+  const items = Array.from(event.clipboardData.items) || [];
+  const imageItems = items.filter((item) => /^image\//.test(item.type));
+
+  if (imageItems.length === 0) {
+    return;
+  }
+
+  event.preventDefault();
+
+  const item = imageItems[0];
+  const blob = item.getAsFile();
+  if (!blob) {
+    return;
+  }
+
+  const file = new File([blob], "file name", {
+    type: "image/jpeg",
+    lastModified: new Date().getTime(),
+  });
+  const url = URL.createObjectURL(file);
+  // console.log(url)
+
+  const formData = new FormData();
+
+  // senImage(formData);
+  content.value += `![업로드중!](${url})\n`;
+  formData.append("image", blob);
 };
 </script>
 

@@ -69,11 +69,11 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import type { Post } from "../types/post";
-import BlogComment from "../components/blog/BlogComment.vue";
-import AddComment from "../components/comment/AddComment.vue";
-import SkeletonPost from "../components/skeleton/SkeletonPost.vue";
-import type { IComment } from "../types/IComment.ts";
+import type { Post } from "@/types/post";
+import BlogComment from "@/components/blog/BlogComment.vue";
+import AddComment from "@/components/comment/AddComment.vue";
+import SkeletonPost from "@/components/skeleton/SkeletonPost.vue";
+import type { IComment } from "@/types/IComment.ts";
 import { useAppStore } from "@/stores/settingStore.ts";
 
 const route = useRoute();

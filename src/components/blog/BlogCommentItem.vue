@@ -9,8 +9,12 @@
       <div class="flex-1">
         <div class="">
           <div>
-            <p class="text-gray-800 dark:text-white font-bold">{{ props.comment.author }}</p>
-            <p class="text-gray-700 dark:text-gray-300 py-1">{{ props.comment.content }}</p>
+            <p class="text-gray-800 dark:text-white font-bold">
+              {{ props.comment.author }}
+            </p>
+            <p class="text-gray-700 dark:text-gray-300 py-1">
+              {{ props.comment.content }}
+            </p>
           </div>
           <div class="flex space-x-3 py-1 pl-2">
             <button
@@ -42,10 +46,10 @@
 
 <script setup lang="ts">
 import { defineProps, type PropType, ref } from "vue";
-import iconReply from "../../assets/icon/icon_reply.svg";
-import iconHeart from "../../assets/icon/icon_heart.svg";
-import iconHeartFilled from "../../assets/icon/icon_heart_filled.svg";
-import type { IComment } from "../../types/IComment.ts";
+import iconReply from "@/assets/icon/icon_reply.svg";
+import iconHeart from "@/assets/icon/icon_heart.svg";
+import iconHeartFilled from "@/assets/icon/icon_heart_filled.svg";
+import type { IComment } from "@/types/IComment.ts";
 import BlogComment from "./BlogComment.vue";
 import AddComment from "../comment/AddComment.vue";
 

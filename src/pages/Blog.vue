@@ -24,10 +24,10 @@
 </template>
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
-import BlogCard from "../components/blog/BlogCard.vue";
-import SkeletonCard from "../components/skeleton/SkeletonCard.vue";
-import Pagination from "../components/Pagination.vue";
-import { useAppStore } from "../stores/settingStore";
+import BlogCard from "@/components/blog/BlogCard.vue";
+import SkeletonCard from "@/components/skeleton/SkeletonCard.vue";
+import Pagination from "@/components/Pagination.vue";
+import { useAppStore } from "@/stores/settingStore";
 
 interface Post {
   id: number;

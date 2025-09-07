@@ -96,10 +96,10 @@
 </template>
 
 <script lang="ts" setup>
+import { useAuth } from "@/hooks/useAuth";
+import type { LoginCredentials } from "@/types/auth";
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
-import { useAuth } from "../../composables/useAuth";
-import type { LoginCredentials } from "../../types/auth";
 
 const router = useRouter();
 const { login, isLoading } = useAuth();
