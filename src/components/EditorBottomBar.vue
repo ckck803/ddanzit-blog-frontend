@@ -1,10 +1,8 @@
 <template>
-  <!-- <div
-    class="w-1/2 h-16 fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-6 py-4"
-  > -->
-  <div class="w-1/2 h-16 fixed bottom-0 left-0 right-0 px-4">
+  <div class="w-1/2 h-16 fixed bottom-0 left-0 right-0 px-5">
+    <div class="border-t-2 border-gray-300 dark:border-gray-700 mx-1"></div>
     <!-- <div> -->
-    <div class="border-t border-gray-200 dark:border-gray-700 h-full">
+    <div class="h-full">
       <div class="max-w-7xl mx-auto flex justify-between items-center h-full">
         <button
           @click="$emit('goBack')"

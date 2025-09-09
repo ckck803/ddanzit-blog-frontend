@@ -10,13 +10,14 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
-import NavigationBar from "./components/NavigationBar.vue";
-import BlogFooter from "./components/blog/BlogFooter.vue";
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import "highlight.js/styles/atom-one-dark.css";
+import BlogFooter from "@/components/blog/BlogFooter.vue";
+import NavigationBar from "@/components/NavigationBar.vue";
 
 const route = useRoute();
-const isEditorPage = computed(() => route.name === 'Editor');
+const isEditorPage = computed(() => route.name === "Editor");
 </script>
 
 <style scoped>

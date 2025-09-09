@@ -1,9 +1,9 @@
 <template>
   <div class="h-screen flex bg-gray-50 dark:bg-gray-900">
-    <div class="flex flex-col w-full px-4 py-6 bg-gray-50 dark:bg-zinc-900">
+    <div class="flex flex-col w-full px-4 py-6 bg-gray-200 dark:bg-zinc-900">
       <!-- Editor 영역 -->
       <div class="flex w-full h-[calc(100vh-6.2rem)]">
-        <div class="flex w-full flex-col overflow-y-auto md:mr-2 max-h-full">
+        <div class="flex w-full flex-col overflow-y-auto max-h-full p-1">
           <div class="">
             <!-- <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               블로그 에디터
@@ -117,10 +117,6 @@
                     }}</span>
                   </div>
                 </div>
-
-                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  Enter나 쉼표로 태그를 추가할 수 있습니다
-                </p>
               </div>
             </div>
           </div>
@@ -129,7 +125,7 @@
           <!-- <div
             class="bg-white dark:bg-zinc-800 rounded-lg p-6 flex-1 flex flex-col"
           > -->
-          <div class="rounded-lg p-1 flex-1 flex flex-col">
+          <div class="rounded-lg flex-1 flex flex-col">
             <textarea
               v-model="content"
               v-on:paste="onPaste"
@@ -140,19 +136,12 @@
         </div>
       </div>
     </div>
-    <!-- Preview -->
-    <!-- <div class="flex flex-col w-full md:ml-2 overflow-scroll">
-      <div class="bg-white dark:bg-zinc-800 p-6 flex flex-col h-full">
-        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-          미리보기
-        </h2>
-        <div
-          class="overflow-scroll flex-1 p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 prose prose-sm max-w-none dark:prose-invert"
-          v-html="renderedContent"
-        ></div>
-      </div>
-    </div> -->
-    <EditorPreview :content="content" />
+    <EditorPreview
+      :tags="selectedTags"
+      :date="new Date()"
+      :title="title"
+      :content="content"
+    />
     <EditorBottomBar @go-back="goBack" @save-post="savePost" />
   </div>
 </template>
@@ -160,10 +149,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import { unified } from "unified";
-import remarkParse from "remark-parse";
-import remarkGfm from "remark-gfm";
-import remarkHtml from "remark-html";
 
 import EditorBottomBar from "@/components/EditorBottomBar.vue";
 import EditorPreview from "@/components/editor/EditorPreview.vue";
