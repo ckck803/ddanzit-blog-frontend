@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex bg-gray-50 dark:bg-gray-900">
-    <div class="flex flex-col w-full px-4 py-6">
+    <div class="flex flex-col w-full px-4 py-6 bg-gray-50 dark:bg-zinc-900">
       <!-- Editor 영역 -->
       <div class="flex w-full h-[calc(100vh-6.2rem)]">
         <div class="flex w-full flex-col overflow-y-auto md:mr-2 max-h-full">
@@ -13,13 +13,14 @@
                 v-model="title"
                 type="text"
                 placeholder="제목을 입력하세요"
-                class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </div>
 
           <!-- Additional Options -->
-          <div class="my-4 bg-white dark:bg-gray-800 rounded-lg px-6 py-4">
+          <!-- <div class="my-4 bg-white dark:bg-zinc-800 rounded-lg px-6 py-4"> -->
+          <div class="rounded-lg py-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="relative">
                 <label
@@ -31,7 +32,7 @@
                   v-model="category"
                   type="text"
                   placeholder="카테고리를 입력하거나 선택하세요"
-                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   @input="showSuggestions = true"
                   @focus="showSuggestions = true"
                   @blur="hideSuggestions"
@@ -40,7 +41,7 @@
                 <!-- 검색 제안 드롭다운 -->
                 <div
                   v-if="showSuggestions && filteredCategories.length > 0"
-                  class="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg max-h-48 overflow-y-auto"
+                  class="absolute z-10 w-full mt-1 bg-white dark:bg-zinc-800 border border-gray-300 dark:border-gray-600 rounded-lg max-h-48 overflow-y-auto"
                 >
                   <div
                     v-for="suggestedCategory in filteredCategories"
@@ -92,7 +93,7 @@
                   v-model="tagInput"
                   type="text"
                   placeholder="태그를 입력하거나 선택하세요"
-                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   @input="showTagSuggestions = true"
                   @focus="showTagSuggestions = true"
                   @blur="hideTagSuggestions"
@@ -103,7 +104,7 @@
                 <!-- 태그 제안 드롭다운 -->
                 <div
                   v-if="showTagSuggestions && filteredTags.length > 0"
-                  class="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg max-h-48 overflow-y-auto"
+                  class="absolute z-10 w-full mt-1 bg-white dark:bg-zinc-800 border border-gray-300 dark:border-gray-600 rounded-lg max-h-48 overflow-y-auto"
                 >
                   <div
                     v-for="suggestedTag in filteredTags"
@@ -125,27 +126,23 @@
           </div>
 
           <!-- Editor -->
-          <div
-            class="bg-white dark:bg-gray-800 rounded-lg p-6 flex-1 flex flex-col"
-          >
-            <h2
-              class="text-xl font-semibold text-gray-900 dark:text-white mb-4"
-            >
-              Markdown 편집기
-            </h2>
+          <!-- <div
+            class="bg-white dark:bg-zinc-800 rounded-lg p-6 flex-1 flex flex-col"
+          > -->
+          <div class="rounded-lg p-1 flex-1 flex flex-col">
             <textarea
               v-model="content"
               v-on:paste="onPaste"
               placeholder="마크다운 내용을 입력하세요..."
-              class="w-full flex-1 p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="w-full flex-1 p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-zinc-800 text-gray-900 dark:text-white font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
             ></textarea>
           </div>
         </div>
       </div>
     </div>
     <!-- Preview -->
-    <div class="flex flex-col w-full md:ml-2 overflow-scroll">
-      <div class="bg-white dark:bg-gray-800 p-6 flex flex-col h-full">
+    <!-- <div class="flex flex-col w-full md:ml-2 overflow-scroll">
+      <div class="bg-white dark:bg-zinc-800 p-6 flex flex-col h-full">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
           미리보기
         </h2>
@@ -154,7 +151,8 @@
           v-html="renderedContent"
         ></div>
       </div>
-    </div>
+    </div> -->
+    <EditorPreview :content="content" />
     <EditorBottomBar @go-back="goBack" @save-post="savePost" />
   </div>
 </template>
@@ -166,7 +164,9 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
+
 import EditorBottomBar from "@/components/EditorBottomBar.vue";
+import EditorPreview from "@/components/editor/EditorPreview.vue";
 
 const router = useRouter();
 
@@ -330,19 +330,19 @@ const hideTagSuggestions = () => {
   }, 150);
 };
 
-const renderedContent = computed(() => {
-  try {
-    const processor = unified()
-      .use(remarkParse)
-      .use(remarkGfm)
-      .use(remarkHtml, { sanitize: false });
+// const renderedContent = computed(() => {
+//   try {
+//     const processor = unified()
+//       .use(remarkParse)
+//       .use(remarkGfm)
+//       .use(remarkHtml, { sanitize: false });
 
-    return processor.processSync(content.value).toString();
-  } catch (error) {
-    console.error("Markdown processing error:", error);
-    return "<p>마크다운 처리 중 오류가 발생했습니다.</p>";
-  }
-});
+//     return processor.processSync(content.value).toString();
+//   } catch (error) {
+//     console.error("Markdown processing error:", error);
+//     return "<p>마크다운 처리 중 오류가 발생했습니다.</p>";
+//   }
+// });
 
 const goBack = () => {
   router.push("/");
@@ -440,7 +440,7 @@ const onPaste = (event: ClipboardEvent) => {
 }
 
 .prose pre {
-  @apply bg-gray-900 dark:bg-gray-800;
+  @apply bg-gray-900 dark:bg-zinc-800;
 }
 
 .prose pre code {
