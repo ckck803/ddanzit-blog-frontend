@@ -8,19 +8,25 @@
             <!-- <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               블로그 에디터
             </h1> -->
+
+            <label
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300 pb-2 px-2"
+            >
+              제목
+            </label>
             <div class="flex gap-4">
               <input
                 v-model="title"
                 type="text"
                 placeholder="제목을 입력하세요"
-                class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                class="flex-1 px-4 py-2 rounded-lg bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500"
               />
             </div>
           </div>
 
           <!-- Additional Options -->
           <!-- <div class="my-4 bg-white dark:bg-zinc-800 rounded-lg px-6 py-4"> -->
-          <div class="rounded-lg py-4">
+          <div class="rounded-lg pb-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="relative">
                 <label
@@ -32,7 +38,7 @@
                   v-model="category"
                   type="text"
                   placeholder="카테고리를 입력하거나 선택하세요"
-                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="w-full px-4 py-2 rounded-lg bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500"
                   @input="showSuggestions = true"
                   @focus="showSuggestions = true"
                   @blur="hideSuggestions"
@@ -93,7 +99,7 @@
                   v-model="tagInput"
                   type="text"
                   placeholder="태그를 입력하거나 선택하세요"
-                  class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  class="w-full px-4 py-2 rounded-lg bg-white dark:bg-zinc-800 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500"
                   @input="showTagSuggestions = true"
                   @focus="showTagSuggestions = true"
                   @blur="hideTagSuggestions"
@@ -130,7 +136,7 @@
               v-model="content"
               v-on:paste="onPaste"
               placeholder="마크다운 내용을 입력하세요..."
-              class="w-full flex-1 p-4 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-zinc-800 text-gray-900 dark:text-white font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="w-full flex-1 p-4 rounded-lg bg-gray-50 dark:bg-zinc-800 text-gray-900 dark:text-white font-mono text-sm resize-none focus:outline-none focus:ring-blue-500"
             ></textarea>
           </div>
         </div>
