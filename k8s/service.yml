@@ -1,0 +1,13 @@
+# vue-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: ddanzit-blog-frontend-service
+  namespace: app
+spec:
+  selector:
+    app: ddanzit-blog-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

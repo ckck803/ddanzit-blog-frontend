@@ -1,0 +1,30 @@
+# vue-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gileun-church
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {APP_NAME}
+  template:
+    metadata:
+      labels:
+        app: {APP_NAME}
+    spec:
+      containers:
+      - name: {APP_NAME}
+        image: ghcr.io/ckck803/{PROJECT_NAME}:latest 
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+      imagePullSecrets:
+        - name: github-docker-token

@@ -1,0 +1,82 @@
+def APP_NAME = "ddanzit-blog-frontend"
+def PROJECT_NAME = "ddanzit-blog-frontend"
+def SOURCE_REPOSITORY_URL = "https://github.com/ckck803/ddanzit-blog-frontend.git"
+
+def TARGET_TEMPLATE_YAML_PATH = "./k8s/template/deploy.yml"
+def DEPLOY_YAML_PATH = "$PROJECT_NAME-deploy.yml"
+
+podTemplate(label: 'default',
+        containers: [
+                containerTemplate(name: 'git', image: 'alpine/git', ttyEnabled: true, command: 'cat'),
+                containerTemplate(name: 'npm', image: 'node:20-alpine', ttyEnabled: true, command: 'cat'),
+                containerTemplate(name: 'docker', image: 'docker:dind', ttyEnabled: true, command: 'dockerd-entrypoint.sh', privileged: true),
+                containerTemplate(name: 'kubectl', image: 'clastix/kubectl:v1.31.0', ttyEnabled: true, command: 'cat'),
+        ]
+){
+    node('default') {
+        try {
+            container('git') {
+                stage('GET TEMPLATE RESPOSITORY') {
+                    checkout([$class           : 'GitSCM',
+                            branches                         : [[name: '*/master']],
+                            userRemoteConfigs: [
+                                    [url: "${SOURCE_REPOSITORY_URL}", credentialsId: 'GITHUB_ACCESS']
+                            ],
+                    ])
+                }
+            }
+            container('npm') {
+                stage('npm Build') {
+                    sh "npm --version"
+                    sh "npm install"
+                    sh "npm run build"
+                }
+            }
+
+            stage('Docker Build And Push Image') {
+                container('docker') {
+                    withDockerRegistry([credentialsId: 'GITHUB_ACCESS', url: "https://ghcr.io"]) {
+                        sh "ls -al"
+                        sh "docker buildx build \
+                                --platform linux/amd64 \
+                                -t ghcr.io/ckck803/${PROJECT_NAME}:latest \
+                                --push \
+                                ."
+                    }
+                }
+
+                stage('MAKE deploy.yml USING TEMPLATE') {
+                    sh("cp ${TARGET_TEMPLATE_YAML_PATH} ${DEPLOY_YAML_PATH}")
+                    sh("sed -i 's/{APP_NAME}/${APP_NAME}/g' ${DEPLOY_YAML_PATH}")
+                    sh("sed -i 's/{PROJECT_NAME}/${PROJECT_NAME}/g' ${DEPLOY_YAML_PATH}")
+                    sh("cat ${DEPLOY_YAML_PATH}")
+                }
+            }
+
+
+            stage('Deploy to Kubernetes') {
+                container('kubectl') {
+                    withKubeConfig([credentialsId: 'KUBECONFIG', serverUrl: 'https://kubernetes.default']) {
+                        sh "kubectl version --client"
+                        sh "kubectl apply -f ${DEPLOY_YAML_PATH}"
+                    }
+                }
+            }
+            // ✅ 성공 시 Slack 알림
+            slackSend(
+                message: "✅ ${env.JOB_NAME} #${env.BUILD_NUMBER} 배포 성공했습니다!",
+                color: 'good'
+            )
+        } catch (e) {
+            // ❌ 실패 시 Slack 알림
+            slackSend(
+                message: "❌ ${env.JOB_NAME} #${env.BUILD_NUMBER} 실패했습니다!\n원인: ${e.getMessage()}",
+                color: 'danger'
+            )
+            currentBuild.result = 'FAILURE'
+            throw e
+        } finally {
+            echo "🔁 파이프라인 종료"
+        }
+    }
+}
