@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gileun-church
+  name: ddanzit-blog-frontend
   namespace: app
 spec:
   replicas: 1
