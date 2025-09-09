@@ -1,0 +1,7 @@
+version: "3.8"
+
+services:
+  vue-gileundong-church:
+    ports:
+      - "8080:80"
+    image: ghcr.io/ckck803/ddanzit-blog-frontend:latest
