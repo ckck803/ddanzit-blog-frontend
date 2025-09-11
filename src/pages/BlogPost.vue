@@ -1,13 +1,15 @@
 <template>
   <div class="container mx-auto px-4 py-8">
     <!-- 로딩 중일 때 스켈레톤 UI 표시 -->
-    <SkeletonPost v-if="loading" />
-    
+    <SkeletonPost v-if="appStore.isLoading" />
+
     <!-- 로딩 완료 후 실제 포스트 내용 표시 -->
     <div v-else-if="post" class="max-w-4xl mx-auto">
       <!-- 헤더 섹션 -->
       <div class="mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ post.title }}</h1>
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          {{ post.title }}
+        </h1>
         <div class="flex items-center gap-4 text-gray-600 dark:text-gray-400">
           <time class="text-sm">{{ post.date }}</time>
           <div class="flex gap-2">
@@ -35,7 +37,9 @@
       </div>
 
       <div class="mt-12">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">댓글</h2>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+          댓글
+        </h2>
         <!-- 댓글 섹션 -->
         <div class="pb-10">
           <AddComment :commentId="comments.length" @addComment="addComment" />
@@ -55,7 +59,9 @@
 
     <!-- 에러 상태 -->
     <div v-else class="flex justify-center items-center min-h-[50vh]">
-      <div class="text-gray-600 dark:text-gray-400">포스트를 찾을 수 없습니다.</div>
+      <div class="text-gray-600 dark:text-gray-400">
+        포스트를 찾을 수 없습니다.
+      </div>
     </div>
   </div>
 </template>
@@ -63,16 +69,17 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import type { Post } from "../types/post";
-import BlogComment from "../components/blog/BlogComment.vue";
-import AddComment from "../components/comment/AddComment.vue";
-import SkeletonPost from "../components/skeleton/SkeletonPost.vue";
-import type { IComment } from "../types/IComment.ts";
+import type { Post } from "@/types/post";
+import BlogComment from "@/components/blog/BlogComment.vue";
+import AddComment from "@/components/comment/AddComment.vue";
+import SkeletonPost from "@/components/skeleton/SkeletonPost.vue";
+import type { IComment } from "@/types/IComment.ts";
+import { useAppStore } from "@/stores/settingStore.ts";
 
 const route = useRoute();
 const router = useRouter();
+const appStore = useAppStore();
 const post = ref<Post | null>(null);
-const loading = ref(true);
 
 const comments = ref<IComment[]>([]);
 const newComment = ref({ author: "", content: "" });
@@ -92,8 +99,8 @@ const addComment = (data: IComment) => {
 // 실제 애플리케이션에서는 API 호출로 대체될 부분
 const fetchPost = async (id: string) => {
   // API 호출 시뮬레이션을 위한 딜레이
-  await new Promise(resolve => setTimeout(resolve, 1500));
-  
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   // 예시 데이터
   post.value = {
     id: Number(id),
@@ -112,11 +119,12 @@ const fetchPost = async (id: string) => {
     `,
     tags: ["Vue", "프로그래밍", "웹개발"],
   };
-  
-  loading.value = false;
+
+  appStore.stopLoading();
 };
 
 onMounted(async () => {
+  appStore.startLoading();
   const postId = route.params.id as string;
   await fetchPost(postId);
 });

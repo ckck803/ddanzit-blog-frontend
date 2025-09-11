@@ -16,6 +16,7 @@ This is a Vue 3 + TypeScript blog comment system using:
 
 - **Vue 3** with Composition API and `<script setup>` syntax
 - **TypeScript** for type safety
+- **Pinia** for centralized state management
 - **Vue Router** for routing between blog list and individual posts
 - **Tailwind CSS** for styling with dark mode support
 - **Vite** as the build tool
@@ -38,6 +39,8 @@ src/
 │   └── ThemeToggle.vue
 ├── composables/        # Vue composables
 │   └── useTheme.ts     # Theme management logic
+├── stores/             # Pinia stores
+│   └── app.ts          # App-level state (loading, etc.)
 ├── pages/              # Route pages
 │   ├── Blog.vue        # Main blog listing
 │   └── BlogPost.vue    # Individual blog post
@@ -55,10 +58,11 @@ src/
 ### Key Architecture Patterns
 
 1. **Component Organization**: Components are organized by feature (`blog/`, `comment/`) rather than by type
-2. **Theme System**: Uses a composable (`useTheme`) that manages dark/light mode with localStorage persistence and system preference detection
-3. **Comment System**: Hierarchical comment structure with nested replies supported through recursive `IComment` interface
-4. **Routing**: Simple two-page structure - blog listing (/) and individual posts (/:id)
-5. **Styling**: Tailwind CSS with dark mode using class strategy (`darkMode: 'class'`)
+2. **State Management**: Uses Pinia for centralized app state management (loading states, etc.) while keeping auth state in a separate composable
+3. **Theme System**: Uses a composable (`useTheme`) that manages dark/light mode with localStorage persistence and system preference detection
+4. **Comment System**: Hierarchical comment structure with nested replies supported through recursive `IComment` interface
+5. **Routing**: Simple two-page structure - blog listing (/) and individual posts (/:id)
+6. **Styling**: Tailwind CSS with dark mode using class strategy (`darkMode: 'class'`)
 
 ### TypeScript Types
 

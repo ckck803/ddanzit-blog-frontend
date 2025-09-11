@@ -34,8 +34,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useTheme } from '../composables/useTheme'
+import { useTheme } from "@/hooks/useTheme";
+import { computed } from "vue";
 
-const { isDark, toggleTheme } = useTheme()
+const { isDark, toggleTheme } = useTheme();
 </script>

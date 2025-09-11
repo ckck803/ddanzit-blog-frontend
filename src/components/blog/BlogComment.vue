@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { type PropType, ref } from "vue";
 import BlogCommentItem from "./BlogCommentItem.vue";
-import type { IComment } from "../../types/IComment.ts";
+import type { IComment } from "@/types/IComment.ts";
 
 const props = defineProps({
   comments: { type: Array as PropType<IComment[]>, required: false },

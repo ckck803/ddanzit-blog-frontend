@@ -122,8 +122,8 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
-import { useAuth } from "../../composables/useAuth";
-import type { SignupCredentials } from "../../types/auth";
+import { useAuth } from "@/hooks/useAuth";
+import type { SignupCredentials } from "@/types/auth";
 
 const router = useRouter();
 const { signup, isLoading } = useAuth();

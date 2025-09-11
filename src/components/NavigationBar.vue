@@ -10,23 +10,39 @@
         <!-- 데스크탑 메뉴 -->
         <div class="hidden md:flex items-center">
           <div class="flex space-x-6 items-center">
-            <router-link to="/" class="hover:text-gray-200 transition">Home</router-link>
+            <router-link to="/" class="hover:text-gray-200 transition"
+              >Home</router-link
+            >
+            <router-link to="/editor" class="hover:text-gray-200 transition"
+              >Editor</router-link
+            >
             <a href="#" class="hover:text-gray-200 transition">About</a>
             <a href="#" class="hover:text-gray-200 transition">Contact</a>
           </div>
-          
+
           <!-- 인증 관련 메뉴 -->
           <div class="flex items-center ml-6 space-x-4">
             <div v-if="!isAuthenticated" class="flex items-center space-x-3">
-              <router-link to="/login" class="hover:text-gray-200 transition">로그인</router-link>
-              <router-link to="/signup" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 rounded-md transition text-sm font-medium">회원가입</router-link>
+              <router-link to="/login" class="hover:text-gray-200 transition"
+                >로그인</router-link
+              >
+              <router-link
+                to="/signup"
+                class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 rounded-md transition text-sm font-medium"
+                >회원가입</router-link
+              >
             </div>
-            
+
             <div v-else class="flex items-center space-x-3">
               <span class="text-gray-200 text-sm">{{ user?.username }}님</span>
-              <button @click="handleLogout" class="hover:text-gray-200 transition text-sm">로그아웃</button>
+              <button
+                @click="handleLogout"
+                class="hover:text-gray-200 transition text-sm"
+              >
+                로그아웃
+              </button>
             </div>
-            
+
             <div class="ml-4">
               <ThemeToggle />
             </div>
@@ -81,6 +97,12 @@
           @click="closeMenu"
           >Home</router-link
         >
+        <router-link
+          to="/editor"
+          class="block py-2 text-white hover:bg-slate-500 dark:hover:bg-slate-600 rounded-md px-3"
+          @click="closeMenu"
+          >Editor</router-link
+        >
         <a
           href="#"
           class="block py-2 text-white hover:bg-slate-500 dark:hover:bg-slate-600 rounded-md px-3"
@@ -91,7 +113,7 @@
           class="block py-2 text-white hover:bg-slate-500 dark:hover:bg-slate-600 rounded-md px-3"
           >Contact</a
         >
-        
+
         <!-- 모바일 인증 메뉴 -->
         <div v-if="!isAuthenticated" class="pt-2 border-t border-slate-600">
           <router-link
@@ -107,24 +129,27 @@
             >회원가입</router-link
           >
         </div>
-        
+
         <div v-else class="pt-2 border-t border-slate-600">
-          <div class="block py-2 text-gray-200 px-3">{{ user?.username }}님</div>
+          <div class="block py-2 text-gray-200 px-3">
+            {{ user?.username }}님
+          </div>
           <button
             @click="handleLogout"
             class="block py-2 text-white hover:bg-slate-500 dark:hover:bg-slate-600 rounded-md px-3 w-full text-left"
-            >로그아웃</button
           >
+            로그아웃
+          </button>
         </div>
       </div>
     </div>
   </nav>
 </template>
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import ThemeToggle from "./ThemeToggle.vue";
-import { useAuth } from "../composables/useAuth";
+import { useAuth } from "@/hooks/useAuth";
 
 const router = useRouter();
 const { user, isAuthenticated, logout, initializeAuth } = useAuth();
@@ -142,7 +167,7 @@ const closeMenu = () => {
 const handleLogout = () => {
   logout();
   closeMenu();
-  router.push('/');
+  router.push("/");
 };
 
 onMounted(() => {
