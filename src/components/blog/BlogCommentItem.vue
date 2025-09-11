@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
 import { defineProps, type PropType, ref } from "vue";
-import iconReply from "@/assets/icon/icon_reply.svg";
+import iconReply from "../../assets/icon/icon_reply.svg";
 import iconHeart from "../../assets/icon/icon_heart.svg";
 import iconHeartFilled from "../../assets/icon/icon_heart_filled.svg";
 import type { IComment } from "@/types/IComment.ts";
