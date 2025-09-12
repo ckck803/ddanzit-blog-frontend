@@ -13,7 +13,17 @@
       "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src\\components\\blog/**)",
       "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src\\components\\comment/**)",
       "Bash(npm run dev:*)",
-      "Bash(npm install:*)"
+      "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src\\components\\blog/**)",
+      "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src\\components\\blog/**)",
+      "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src\\components\\auth/**)",
+      "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src\\components\\auth/**)",
+      "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src/**)",
+      "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src/**)",
+      "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src\\components/**)",
+      "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src\\components\\blog/**)",
+      "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src/**)",
+      "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src\\components\\auth/**)",
+      "Read(/C:\\Users\\dongwoo-yang\\develop\\vue\\vue-blog-comment\\src\\components\\auth/**)"
     ],
     "deny": [],
     "ask": []

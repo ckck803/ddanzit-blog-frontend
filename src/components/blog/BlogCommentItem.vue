@@ -16,19 +16,24 @@
               {{ props.comment.content }}
             </p>
           </div>
-          <div class="flex space-x-3 py-1 pl-2">
+          <div class="flex items-center space-x-3 py-1 pl-2">
             <button
               @click="$emit('reply')"
-              class="text-sm text-blue-500 dark:text-blue-400 hover:underline"
+              class="flex items-center space-x-1 text-xs text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-150"
             >
-              <div class="w-4">
-                <img :src="iconReply" alt="Reply" />
-              </div>
+              <img :src="iconReply" alt="Reply" class="w-3.5 h-3.5" />
+              <span>답글</span>
             </button>
-            <button @click="liked = !liked" class="flex items-center space-x-1">
-              <div class="w-4">
-                <img :src="liked ? iconHeartFilled : iconHeart" alt="Like" />
-              </div>
+            <button
+              @click="liked = !liked"
+              class="flex items-center space-x-1 text-xs transition-colors duration-150"
+            >
+              <img
+                :src="liked ? iconHeartFilled : iconHeart"
+                alt="Like"
+                class="w-3.5 h-3.5"
+              />
+              <span>좋아요</span>
             </button>
           </div>
         </div>
@@ -46,7 +51,7 @@
 
 <script setup lang="ts">
 import { defineProps, type PropType, ref } from "vue";
-import iconReply from "@/assets/icon/icon_reply.svg";
+import iconReply from "../../assets/icon/icon_reply.svg";
 import iconHeart from "../../assets/icon/icon_heart.svg";
 import iconHeartFilled from "../../assets/icon/icon_heart_filled.svg";
 import type { IComment } from "@/types/IComment.ts";
