@@ -17,7 +17,7 @@ spec:
   tls:
     - hosts:
         - www.ddanzits.com
-      secretName: tls-secret-vue
+      secretName: tls-secret-blog
   rules:
   - host: www.ddanzits.com
     http:
