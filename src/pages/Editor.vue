@@ -1,6 +1,8 @@
 <template>
   <div class="h-screen flex bg-gray-50 dark:bg-gray-900">
-    <div class="flex flex-col w-full px-4 py-6 bg-gray-200 dark:bg-zinc-900">
+    <div
+      class="flex flex-col w-full px-2 sm:px-4 py-4 sm:py-6 bg-gray-200 dark:bg-zinc-900"
+    >
       <!-- Editor 영역 -->
       <div class="flex w-full h-[calc(100vh-6.2rem)]">
         <div class="flex w-full flex-col overflow-y-auto max-h-full p-1">
@@ -10,7 +12,7 @@
             </h1> -->
 
             <label
-              class="block text-sm font-medium text-gray-700 dark:text-gray-300 pb-2 px-2"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300 pb-2 px-1 sm:px-2"
             >
               제목
             </label>
@@ -27,7 +29,7 @@
           <!-- Additional Options -->
           <!-- <div class="my-4 bg-white dark:bg-zinc-800 rounded-lg px-6 py-4"> -->
           <div class="rounded-lg pb-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-4">
               <div class="relative">
                 <label
                   class="block text-sm font-medium text-gray-700 dark:text-gray-300 p-2"
@@ -66,7 +68,7 @@
               </div>
               <div class="relative">
                 <!-- 라벨과 선택된 태그들을 한 줄에 표시 -->
-                <div class="flex items-center flex-wrap gap-2 p-2">
+                <div class="flex items-center flex-wrap md:gap-2 p-2">
                   <div class="flex items-center">
                     <label
                       class="text-sm font-medium text-gray-700 dark:text-gray-300"
@@ -142,12 +144,15 @@
         </div>
       </div>
     </div>
-    <EditorPreview
-      :tags="selectedTags"
-      :date="new Date()"
-      :title="title"
-      :content="content"
-    />
+    <!-- EditorPreview는 모바일에서 숨김 -->
+    <div class="hidden md:flex flex-col w-full">
+      <EditorPreview
+        :tags="selectedTags"
+        :date="new Date()"
+        :title="title"
+        :content="content"
+      />
+    </div>
     <EditorBottomBar @go-back="goBack" @save-post="savePost" />
   </div>
 </template>
