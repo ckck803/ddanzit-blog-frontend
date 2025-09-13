@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full h-16 fixed bottom-0 left-0 right-0 px-3 sm:px-5 bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-gray-700">
+  <div
+    class="w-full h-16 fixed bottom-0 left-0 right-0 px-3 sm:px-5 bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-gray-700"
+  >
     <div class="h-full">
       <div class="max-w-7xl mx-auto flex justify-between items-center h-full">
         <button
@@ -18,11 +20,12 @@
               clip-rule="evenodd"
             />
           </svg>
-          <span class="hidden sm:inline">나가기</span>
+          나가기
+          <!-- <span class="hidden sm:inline">나가기</span> -->
         </button>
 
         <div class="flex items-center gap-2 sm:gap-3">
-          <span class="hidden sm:inline text-sm text-gray-500 dark:text-gray-400">
+          <span class="sm:inline text-sm text-gray-500 dark:text-gray-400">
             임시저장
           </span>
           <button
