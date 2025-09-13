@@ -16,22 +16,26 @@
               {{ props.comment.content }}
             </p>
           </div>
-          <div class="flex items-center space-x-4 py-2 pl-2">
+          <div class="flex items-center space-x-3 py-2 pl-2">
             <button
               @click="$emit('reply')"
               class="flex items-center space-x-1 text-sm transition-colors duration-150"
             >
-              <Reply class="w-5 h-5" />
+              <div class="pb-[0.05rem]">
+                <Reply class="w-5 h-5" />
+              </div>
               <span>답글</span>
             </button>
             <button
               @click="liked = !liked"
               class="flex items-center space-x-1 text-sm transition-colors duration-150"
             >
-              <Heart
-                class="w-4 h-4"
-                :class="liked ? 'fill-[#ff0000] text-[#ff0000]' : ''"
-              />
+              <div class="pb-[0.05rem]">
+                <Heart
+                  class="w-4 h-4"
+                  :class="liked ? 'fill-[#ff0000] text-[#ff0000]' : ''"
+                />
+              </div>
               <span>좋아요</span>
             </button>
           </div>
@@ -80,7 +84,6 @@ const addComment = (data: IComment) => {
     showReply: false,
   });
 
-  console.log("%o", props.comment.replies);
   props.comment.showReply = false;
   // emit("addReply", data);
 };

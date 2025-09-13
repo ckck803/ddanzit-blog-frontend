@@ -49,7 +49,8 @@ const addReply = () => {
   });
 
   // 입력 필드 초기화
-  newReply.value = { author: "", content: "" };
+  newReply.value.author = "";
+  newReply.value.content = "";
 };
 
 const handleEnterKey = (event: KeyboardEvent) => {
