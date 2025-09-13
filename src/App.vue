@@ -2,8 +2,8 @@
   <div
     class="flex flex-col min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors"
   >
+    <Header v-if="!isEditorPage" />
     <div class="flex-grow">
-      <NavigationBar v-if="!isEditorPage" />
       <router-view></router-view>
     </div>
     <BlogFooter v-if="!isEditorPage" />
@@ -14,7 +14,7 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import "highlight.js/styles/atom-one-dark.css";
 import BlogFooter from "@/components/blog/BlogFooter.vue";
-import NavigationBar from "@/components/NavigationBar.vue";
+import Header from "@/components/Header.vue";
 
 const route = useRoute();
 const isEditorPage = computed(() => route.name === "Editor");
