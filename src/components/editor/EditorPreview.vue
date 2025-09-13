@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-4 py-8 overflow-scroll">
+  <div class="container mx-auto px-4 py-8 overflow-scroll h-full">
     <!-- <div class="flex flex-col w-full md:ml-2 overflow-scroll">
       <div
         class="overflow-scroll flex-1 p-4 border-gray-300 dark:border-gray-600 prose prose-sm max-w-none dark:prose-invert"

@@ -145,7 +145,7 @@
       </div>
     </div>
     <!-- EditorPreview는 모바일에서 숨김 -->
-    <div class="hidden md:flex flex-col w-full">
+    <div class="hidden md:flex flex-col w-full h-full">
       <EditorPreview
         :tags="selectedTags"
         :date="new Date()"

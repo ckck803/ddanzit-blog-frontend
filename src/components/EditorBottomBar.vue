@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-16 fixed bottom-0 left-0 right-0 px-3 sm:px-5 bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-gray-700"
+    class="w-full md:w-1/2 h-16 fixed bottom-0 left-0 right-0 px-3 sm:px-5 bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-gray-700"
   >
     <div class="h-full">
       <div class="max-w-7xl mx-auto flex justify-between items-center h-full">
