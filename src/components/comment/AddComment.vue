@@ -3,7 +3,6 @@
     <div class="flex items-center justify-between">
       <input
         v-model="newReply.author"
-        @keydown.enter="addReply"
         type="text"
         placeholder="이름"
         class="flex-1 mr-3 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:focus:ring-gray-500 text-sm"
